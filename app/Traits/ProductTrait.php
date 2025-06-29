@@ -13,6 +13,8 @@ trait ProductTrait
         $data['purchase_price'] = $request->purchase_price;
         $data['sell_price'] = $request->sell_price;
         $data['status'] = $request->status;
+        $data['discount'] = $request->discount;
+        $data['discount_type'] = $request->discount_type;
         if ($method == 'create'){
             $data['slug'] = slugGenerate($request->name,'products');
             $data['created_at'] = now();
