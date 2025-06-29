@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\InventoryController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::put('products/status-update/{id}',[ProductController::class, 'statusUpdate'])->name('products.update-status');
     Route::resource('products',ProductController::class);
+    Route::resource('inventories',InventoryController::class);
 
 
 });

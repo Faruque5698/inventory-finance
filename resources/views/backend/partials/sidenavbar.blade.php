@@ -9,15 +9,20 @@
                 </a>
 
                 <a class="nav-link" href="{{route('products.index')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-product-hunt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                     Product
+                </a>
+
+                <a class="nav-link" href="{{route('inventories.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Inventory
                 </a>
 
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
+            {{\Illuminate\Support\Facades\Auth::user()->name}}
         </div>
     </nav>
 </div>
