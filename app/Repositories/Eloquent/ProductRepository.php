@@ -57,5 +57,10 @@ class ProductRepository implements ProductRepositoryInterface
         ]);
     }
 
+    public function dropDownData()
+    {
+        return $this->model::select('id','name')->orderBy('name','ASC')->get();
+    }
+
 
 }

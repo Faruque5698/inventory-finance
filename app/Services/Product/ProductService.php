@@ -58,4 +58,9 @@ class ProductService implements ProductServiceInterface
     {
        return $this->productRepository->statusUpdate($status, $id);
     }
+
+    public function productDropDown()
+    {
+        return $this->productRepository->dropDownData();
+    }
 }

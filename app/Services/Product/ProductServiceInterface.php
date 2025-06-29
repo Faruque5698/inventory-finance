@@ -18,4 +18,6 @@ interface ProductServiceInterface
 
     public function statusUpdate($status, $id);
 
+    public function productDropDown();
+
 }
