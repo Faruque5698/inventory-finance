@@ -8,6 +8,11 @@
                     Dashboard
                 </a>
 
+                <a class="nav-link" href="{{route('products.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-product-hunt"></i></div>
+                    Product
+                </a>
+
             </div>
         </div>
         <div class="sb-sidenav-footer">

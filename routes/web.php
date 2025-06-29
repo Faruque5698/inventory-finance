@@ -16,7 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('product',ProductController::class);
+    Route::put('products/status-update/{id}',[ProductController::class, 'statusUpdate'])->name('products.update-status');
+    Route::resource('products',ProductController::class);
 
 
 });

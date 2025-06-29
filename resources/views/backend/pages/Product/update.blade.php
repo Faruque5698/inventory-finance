@@ -1,22 +1,25 @@
 @extends('backend.layouts.app')
-@section('title', 'Add Product')
+
+@section('title', 'Edit Product')
+
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Add Product</h1>
+            <h1 class="mt-4">Edit Product</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Product List</a></li>
-                <li class="breadcrumb-item active">Add Product</li>
+                <li class="breadcrumb-item active">Edit Product</li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-box me-1"></i>
-                    Product Entry Form
+                    Product Update Form
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Product Name <span class="text-danger">*</span></label>
@@ -24,11 +27,19 @@
                                    name="name"
                                    id="name"
                                    class="form-control @error('name') is-invalid @enderror"
-                                   value="{{ old('name') }}"
+                                   value="{{ old('name', $product->name) }}"
                                    required>
                             @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Slug</label>
+                            <input type="text"
+                                   class="form-control"
+                                   value="{{ $product->slug }}"
+                                   readonly>
                         </div>
 
                         <div class="mb-3">
@@ -44,10 +55,9 @@
                             @enderror
 
                             <div class="mt-2">
-                                <img id="imagePreview" src="#" alt="Image Preview" style="max-height: 150px; display: none;">
+                                <img id="imagePreview" src="{{ asset($product->image) }}" alt="Image Preview" style="max-height: 150px;">
                             </div>
                         </div>
-
 
                         <div class="mb-3">
                             <label for="purchase_price" class="form-label">Purchase Price (TK) <span class="text-danger">*</span></label>
@@ -56,7 +66,7 @@
                                    id="purchase_price"
                                    step="0.001"
                                    class="form-control @error('purchase_price') is-invalid @enderror"
-                                   value="{{ old('purchase_price', 0.000) }}"
+                                   value="{{ old('purchase_price', $product->purchase_price) }}"
                                    required>
                             @error('purchase_price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -70,7 +80,7 @@
                                    id="sell_price"
                                    step="0.001"
                                    class="form-control @error('sell_price') is-invalid @enderror"
-                                   value="{{ old('sell_price', 0.000) }}"
+                                   value="{{ old('sell_price', $product->sell_price) }}"
                                    required>
                             @error('sell_price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -83,15 +93,15 @@
                                     id="status"
                                     class="form-select @error('status') is-invalid @enderror"
                                     required>
-                                <option value="active" {{ old('status', 'active') === 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                <option value="active" {{ old('status', $product->status) === 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="inactive" {{ old('status', $product->status) === 'inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
                             @error('status')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-success">Add Product</button>
+                        <button type="submit" class="btn btn-primary">Update Product</button>
                     </form>
                 </div>
             </div>
@@ -114,11 +124,7 @@
                 };
 
                 reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.src = '';
-                preview.style.display = 'none';
             }
         }
     </script>
 @endpush
-
