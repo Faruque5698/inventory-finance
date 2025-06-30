@@ -37,6 +37,8 @@
                             <th>Image</th>
                             <th>Purchase Price</th>
                             <th>Sell Price</th>
+                            <th>Discount</th>
+                            <th>Discount Type</th>
                             <th>Status</th>
                             <th>Created At</th>
                             <th>Updated At</th>
@@ -59,20 +61,25 @@
                                 <td>{{ number_format($product->purchase_price, 2) }} Tk</td>
                                 <td>{{ number_format($product->sell_price, 2) }} Tk</td>
                                 <td>
-                                        <form action="{{ route('products.update-status', $product->id) }}" method="POST" class="mb-0">
-                                            @csrf
-                                            @method('PUT')
-                                            <select name="status" class="form-select form-select-sm"
-                                                    style="min-width: 120px;" onchange="this.form.submit()">
-                                                <option value="active" {{ $product->status == 'active' ? 'selected' : '' }}>
-                                                    ✅ Active
-                                                </option>
-                                                <option value="inactive" {{ $product->status == 'inactive' ? 'selected' : '' }}>
-                                                    ❌ Inactive
-                                                </option>
-                                            </select>
-                                        </form>
-
+                                    {{ $product->discount ?? '0' }}
+                                </td>
+                                <td>
+                                    {{ ucfirst($product->discount_type ?? 'N/A') }}
+                                </td>
+                                <td>
+                                    <form action="{{ route('products.update-status', $product->id) }}" method="POST" class="mb-0">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="status" class="form-select form-select-sm"
+                                                style="min-width: 120px;" onchange="this.form.submit()">
+                                            <option value="active" {{ $product->status == 'active' ? 'selected' : '' }}>
+                                                ✅ Active
+                                            </option>
+                                            <option value="inactive" {{ $product->status == 'inactive' ? 'selected' : '' }}>
+                                                ❌ Inactive
+                                            </option>
+                                        </select>
+                                    </form>
                                 </td>
                                 <td>{{ $product->created_at->format('d M, Y') }}</td>
                                 <td>{{ $product->updated_at->format('d M, Y') }}</td>
@@ -91,7 +98,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center">No products found.</td>
+                                <td colspan="12" class="text-center">No products found.</td>
                             </tr>
                         @endforelse
                         </tbody>

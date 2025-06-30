@@ -87,6 +87,34 @@
                             @enderror
                         </div>
 
+                        {{-- Discount --}}
+                        <div class="mb-3">
+                            <label for="discount" class="form-label">Discount Value</label>
+                            <input type="number"
+                                   name="discount"
+                                   id="discount"
+                                   step="0.01"
+                                   class="form-control @error('discount') is-invalid @enderror"
+                                   value="{{ old('discount', $product->discount ?? 0) }}">
+                            @error('discount')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Discount Type --}}
+                        <div class="mb-3">
+                            <label for="discount_type" class="form-label">Discount Type</label>
+                            <select name="discount_type"
+                                    id="discount_type"
+                                    class="form-select @error('discount_type') is-invalid @enderror">
+                                <option value="flat" {{ old('discount_type', $product->discount_type) === 'flat' ? 'selected' : '' }}>Flat (TK)</option>
+                                <option value="%" {{ old('discount_type', $product->discount_type) === '%' ? 'selected' : '' }}>% Percentage</option>
+                            </select>
+                            @error('discount_type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
                             <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
                             <select name="status"

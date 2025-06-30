@@ -26,6 +26,8 @@ class ProductRequest extends FormRequest
             'image'          => 'nullable|image|max:2048',
             'purchase_price' => 'required|numeric|min:0',
             'sell_price'     => 'required|numeric|min:0',
+            'discount_type'  => 'nullable|in:flat,%',
+            'discount'       => 'nullable',
             'status'         => 'required|in:active,inactive',
         ];
     }

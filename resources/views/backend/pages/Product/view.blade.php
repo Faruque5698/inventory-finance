@@ -28,15 +28,23 @@
                             <td>{{ number_format($product->sell_price, 2) }} TK</td>
                         </tr>
                         <tr>
+                            <th>Discount</th>
+                            <td>{{ $product->discount ?? '0' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Discount Type</th>
+                            <td>{{ ucfirst($product->discount_type ?? 'N/A') }}</td>
+                        </tr>
+                        <tr>
                             <th>Status</th>
                             <td>
-                                    <span class="badge
-                                        @if($product->status === 'active') bg-success
-                                        @elseif($product->status === 'inactive') bg-danger
-                                        @else bg-secondary
-                                        @endif">
-                                        {{ ucfirst($product->status) }}
-                                    </span>
+                                <span class="badge
+                                    @if($product->status === 'active') bg-success
+                                    @elseif($product->status === 'inactive') bg-danger
+                                    @else bg-secondary
+                                    @endif">
+                                    {{ ucfirst($product->status) }}
+                                </span>
                             </td>
                         </tr>
                         <tr>
@@ -49,18 +57,7 @@
                                 @endif
                             </td>
                         </tr>
-                        <tr>
-                            <th>Tags</th>
-                            <td>
-                                @if($product->tags && $product->tags->count())
-                                    @foreach($product->tags as $tag)
-                                        <span class="badge bg-secondary">{{ $tag->name }}</span>
-                                    @endforeach
-                                @else
-                                    N/A
-                                @endif
-                            </td>
-                        </tr>
+
                         <tr>
                             <th>Created At</th>
                             <td>{{ $product->created_at->format('d M Y, h:i A') }}</td>

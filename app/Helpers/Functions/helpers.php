@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\Inventory;
 
 if (!function_exists('limit')) {
     /**
@@ -68,5 +69,25 @@ if (!function_exists('generateSequentialUniqueCode')) {
         $formattedNumber = str_pad($newNumber, $padLength, '0', STR_PAD_LEFT);
 
         return $prefix . '-' . $formattedNumber;
+    }
+}
+
+if (!function_exists('adjustQuantity')) {
+    /**
+     * @param int $productId
+     * @param int $quantity
+     * @param string $operation
+     */
+    function adjustQuantity(int $productId, int $quantity, string $operation = 'increase')
+    {
+        $inventory = Inventory::where('product_id',$productId)->first();
+        if ($operation == 'increase'){
+            $inventory->quantity = $inventory->quantity+$quantity;
+        }else{
+            $inventory->quantity = $inventory->quantity-$quantity;
+        }
+
+        $inventory->save();
+        return true;
     }
 }

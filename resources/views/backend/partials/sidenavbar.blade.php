@@ -18,6 +18,11 @@
                     Inventory
                 </a>
 
+                <a class="nav-link" href="{{route('sales.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
+                    Sales
+                </a>
+
             </div>
         </div>
         <div class="sb-sidenav-footer">
