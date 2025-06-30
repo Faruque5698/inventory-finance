@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('invoice_no')->unique();
-            $table->date('sale_date')->comment('Date of sale');
+            $table->date('sale_date');
             $table->decimal('total_amount', 15, 2)->default(0);
             $table->decimal('discount', 15, 2)->default(0);
             $table->decimal('vat', 15, 2)->default(0);
             $table->decimal('net_amount', 15, 2)->default(0);
             $table->decimal('paid_amount', 15, 2)->default(0);
             $table->decimal('due_amount', 15, 2)->default(0);
+            $table->enum('status',['paid','partially_paid','due'])->default('due');
             $table->timestamps();
         });
     }

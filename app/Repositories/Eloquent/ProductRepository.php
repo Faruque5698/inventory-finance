@@ -59,7 +59,7 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function dropDownData()
     {
-        return $this->model::select('id','name')->orderBy('name','ASC')->get();
+        return $this->model::select('id','name','sell_price','discount','discount_type')->orderBy('name','ASC')->get();
     }
 
 

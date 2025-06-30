@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = $this->productService->getAllProduct($request->all());
-        return view('backend.pages.product.list',compact('products'));
+        return view('backend.pages.Product.list',compact('products'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.product.create');
+        return view('backend.pages.Product.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = $this->productService->getProductById($id);
-        return view('backend.pages.product.update', compact('product'));
+        return view('backend.pages.Product.update', compact('product'));
     }
 
     /**

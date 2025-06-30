@@ -26,7 +26,7 @@ class InventoryController extends Controller
     {
         $inventories = $this->inventoryService->getAllData($request->all());
         $products = $this->productService->productDropDown();
-        return view('backend.pages.inventory.list',compact('inventories','products'));
+        return view('backend.pages.Inventory.list',compact('inventories','products'));
     }
 
     /**
@@ -35,7 +35,7 @@ class InventoryController extends Controller
     public function create()
     {
         $products = $this->productService->productDropDown();
-        return view('backend.pages.inventory.create',compact('products'));
+        return view('backend.pages.Inventory.create',compact('products'));
 
     }
 
@@ -60,7 +60,7 @@ class InventoryController extends Controller
     public function show(string $id)
     {
         $inventory = $this->inventoryService->getDataById($id);
-        return view('backend.pages.inventory.view',compact('inventory'));
+        return view('backend.pages.Inventory.view',compact('inventory'));
     }
 
     /**
@@ -70,7 +70,7 @@ class InventoryController extends Controller
     {
         $inventory = $this->inventoryService->getDataById($id);
         $products = $this->productService->productDropDown();
-        return view('backend.pages.inventory.update',compact('inventory', 'products'));
+        return view('backend.pages.Inventory.update',compact('inventory', 'products'));
     }
 
     /**
