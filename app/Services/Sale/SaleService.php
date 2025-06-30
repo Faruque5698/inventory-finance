@@ -32,6 +32,9 @@ class SaleService implements SaleServiceInterface
                 'created_at' => now(),
             ]);
         }
+        if ($request->quantity > 0){
+            adjustQuantity($request->product_id, $request->quantity, 'decrease');
+        }
 
         return $insertData;
     }

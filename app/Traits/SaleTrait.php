@@ -15,6 +15,7 @@ trait SaleTrait
         $data['paid_amount'] = $request->paid_amount ?? 0;
         $data['due_amount'] =$request->due_amount ?? 0;
         $data['net_amount'] =$request->net_amount ?? 0;
+        $data['quantity'] =$request->quantity ?? 0;
 
         if ($data['due_amount'] <= 0) {
             $data['status'] = 'paid';
